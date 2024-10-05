@@ -19,18 +19,17 @@ export const NewTaskBar = () => {
     }
   };
 
-  const disabled =
-      !validateHeaderMin(value) || !validateHeaderMax(value) || uncomplete >= 10;
+  const disabled = !validateHeaderMin(value) || !validateHeaderMax(value) || uncomplete >= 10;
 
   return (
-      <div className="new-task-bar">
-        <Input
-            value={value}
-            onChange={(val) => setValue(val)}
-            disabled={uncomplete >= 10}
-            disabledMessage="Нельзя завести больше 10 невыполненных задач"
-        />
-        <AddButton onClick={handleAdd} disabled={disabled} />
-      </div>
+    <div className="new-task-bar">
+      <Input
+        value={value}
+        onChange={(val) => setValue(val)}
+        disabled={uncomplete >= 10}
+        disabledMessage="Нельзя завести больше 10 невыполненных задач"
+      />
+      <AddButton onClick={handleAdd} disabled={disabled} />
+    </div>
   );
 };

@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { List } from 'src/components/List';
 
 it('отображение списка задач', () => {
@@ -24,7 +24,7 @@ it('отображение списка задач', () => {
   ];
 
   const { rerender, asFragment } = render(
-      <List items={items} onDelete={onDelete} onToggle={onToggle} />,
+    <List items={items} onDelete={onDelete} onToggle={onToggle} />,
   );
   const firstRender = asFragment();
 
@@ -37,5 +37,19 @@ it('отображение списка задач', () => {
 });
 
 it('Список содержит не больше 10 невыполненных задач', () => {
+  const onDelete = jest.fn();
+  const onToggle = jest.fn();
 
+  const items: Task[] = new Array(11).fill(0).map((_, i) => ({
+    id: i.toString(),
+    header: 'купить хлеб',
+    done: false,
+  }));
+
+  render(
+  <List items={items} onDelete={onDelete} onToggle={onToggle} />,
+  );
+
+  const error = screen.getByText('В списке не должно быть больше 10 невыполненных задач');
+  expect(error).toBeInTheDocument();
 });

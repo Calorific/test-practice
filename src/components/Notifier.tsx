@@ -24,10 +24,10 @@ export const Notifier = ({ task, open, onClose }: Props) => {
   }
 
   return (
-      <div className="blackout">
-        <div className="notifier-wrapper">
-          {task}
-        </div>
+    <div className="blackout">
+      <div className="notifier-wrapper">
+        {task}
       </div>
+    </div>
   );
 };
