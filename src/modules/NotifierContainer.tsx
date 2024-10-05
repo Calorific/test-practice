@@ -12,10 +12,10 @@ export const NotifierContainer = () => {
   };
 
   return (
-      <Notifier
-          open={Boolean(notification.length)}
-          task={notification}
-          onClose={handleNotifierClose}
-      />
+    <Notifier
+      open={Boolean(notification.length)}
+      task={notification}
+      onClose={handleNotifierClose}
+    />
   );
 };

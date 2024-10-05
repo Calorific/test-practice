@@ -1,7 +1,7 @@
 import { ChangeEvent, useMemo } from 'react';
 
 import './styles.css';
-import { headerFieldOptions, validateHeaderMax } from 'src/utils/helpers';
+import { headerFieldOptions, validateHeaderMax, validateHeaderMin } from 'src/utils/helpers';
 
 type Props = {
   value: string;
@@ -11,21 +11,25 @@ type Props = {
 };
 
 export const Input = ({
-                        value,
-                        onChange,
-                        disabledMessage,
-                        disabled,
-                      }: Props) => {
+  value,
+  onChange,
+  disabledMessage,
+  disabled,
+}: Props) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const val = event.target.value;
 
     onChange(val);
   };
 
-  const hintValue = useMemo(
-      () => (validateHeaderMax(value) ? '' : headerFieldOptions.message),
-      [value],
-  );
+  const hintValue = useMemo(() => {
+    if (!validateHeaderMax(value)) {
+      return headerFieldOptions.message;
+    }
+    if (!validateHeaderMin(value)) {
+      return headerFieldOptions.minLength;
+    }
+  }, [value]);
 
   return (
       <div className="input-field-wrapper" data-testid="input-container">

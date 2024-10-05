@@ -1,5 +1,6 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Notifier } from 'src/components/Notifier';
+
 
 describe('Окно оповещения', () => {
   it('автоматически исчезает с экрана через 2 секунды', async () => {

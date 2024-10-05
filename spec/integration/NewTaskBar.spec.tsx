@@ -38,9 +38,9 @@ it.each([
 });
 
 it('Не больше 10 новых задач', async () => {
-  const spied = jest
-      .spyOn(taskSliceModule, 'uncompleteCount')
-      .mockReturnValue(10);
+  jest
+    .spyOn(taskSliceModule, 'uncompleteCount')
+    .mockReturnValue(10);
 
   render(<NewTaskBar />, {
     wrapper: JestStoreProvider,
